@@ -24,9 +24,10 @@ const getComputerChoice = () => {
 
 //console.log(getComputerChoice());
 
-const playRound = (playerSelection, computerSelection) =>{
-    
 
+const playRound = (playerSelection, computerSelection) =>{
+
+    playerSelection = playerSelection.toLowerCase();
     if (playerSelection == computerSelection){
         return "There was a tie, replay round"
     }
@@ -43,6 +44,36 @@ const playRound = (playerSelection, computerSelection) =>{
     
 }
 
-const playerSelection = "rock"
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection))
+
+const game = () =>{
+    let comPoints = 0;
+    let userPoints = 0;
+    
+    for (let i = 0; i < 5; i++){
+        const playerSelection = prompt('Choose rock, paper or scissors')
+        const computerSelection = getComputerChoice();
+        const result = playRound(playerSelection, computerSelection);
+        console.log(result);
+        
+
+        if(result.includes("Win!")){
+            userPoints++
+        }else if(result.includes("Lose!")){
+            comPoints++
+    }
+
+        console.log(`Scores = Player: ${userPoints}, Computer: ${comPoints}`);
+    }
+
+
+    if (comPoints > userPoints){
+        console.log("You lost the game to the computer")
+    }else if(userPoints > comPoints){
+        console.log("Congrats you beat the computer")
+    }else{
+        console.log("There was a tie between you and the computer")
+    }
+
+}
+
+game();
